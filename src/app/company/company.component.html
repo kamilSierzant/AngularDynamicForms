@@ -1,0 +1,18 @@
+<p>company works!</p>
+
+<form [formGroup]="companyForm">
+  <!--  Company name: {{companyForm.controls.name.value}}-->
+
+  <p>Employees</p>
+  <button mat-raised-button color="primary" (click)="addEmployee()">Add employee</button>
+  <div>
+    <div *ngFor="let employee of employees.controls; let i = index">
+      <app-employee [index]="i" [employeeForm]="employee" (deleteEmployee)="deleteEmployee($event)"></app-employee>
+    </div>
+  </div>
+
+  <button type="submit" mat-raised-button color="accent" (click)="saveCompany()" [disabled]="companyForm.invalid">Submit
+  </button>
+
+  <pre>Parent Form Status: <span>{{companyForm.status}}</span></pre>
+</form>
